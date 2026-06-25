@@ -20,8 +20,8 @@
 
 | Dashboard | Daftar Menu |
 |---|---|
-| ![Dashboard]<img width="2880" height="1616" alt="image" src="https://github.com/user-attachments/assets/63adff8a-4664-4735-abea-3d4eb3a83bf5" />
-| ![Menu]<img width="2846" height="1610" alt="image" src="https://github.com/user-attachments/assets/17ec5437-7df0-4ec6-a9f1-a702fb8132b0" />
+|<img width="880" height="600" alt="image" src="https://github.com/user-attachments/assets/63adff8a-4664-4735-abea-3d4eb3a83bf5" />
+|<img width="880" height="600" alt="image" src="https://github.com/user-attachments/assets/17ec5437-7df0-4ec6-a9f1-a702fb8132b0" />
 |
 
 | Pesanan Baru (POS) | Manajemen Meja |
