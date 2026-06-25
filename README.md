@@ -161,3 +161,5 @@ src/
 ## 📄 License
 
 MIT License — bebas digunakan untuk keperluan belajar dan portofolio.
+
+Copyright © 2026 Nur Muhammad Anang Febriananto ([@brynnstilearning](https://github.com/brynnstilearning))
