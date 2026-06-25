@@ -20,15 +20,11 @@
 
 | Dashboard | Daftar Menu |
 |---|---|
-|<img width="880" height="600" alt="image" src="https://github.com/user-attachments/assets/63adff8a-4664-4735-abea-3d4eb3a83bf5" />
-|<img width="880" height="600" alt="image" src="https://github.com/user-attachments/assets/17ec5437-7df0-4ec6-a9f1-a702fb8132b0" />
-|
+| <img src="https://github.com/user-attachments/assets/63adff8a-4664-4735-abea-3d4eb3a83bf5" width="420"/> | <img src="https://github.com/user-attachments/assets/17ec5437-7df0-4ec6-a9f1-a702fb8132b0" width="420"/> |
 
 | Pesanan Baru (POS) | Manajemen Meja |
 |---|---|
-| ![POS]<img width="2880" height="1616" alt="image" src="https://github.com/user-attachments/assets/8b71918e-e721-4ade-80d1-a708a679a341" />
-| ![Meja]<img width="2880" height="1624" alt="image" src="https://github.com/user-attachments/assets/72403fb3-1cb8-4465-86a5-09266c7eaa8e" />
-|
+| <img src="https://github.com/user-attachments/assets/8b71918e-e721-4ade-80d1-a708a679a341" width="420"/> | <img src="https://github.com/user-attachments/assets/72403fb3-1cb8-4465-86a5-09266c7eaa8e" width="420"/> |
 
 ## ✨ Fitur Utama
 
