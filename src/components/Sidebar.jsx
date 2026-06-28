@@ -6,6 +6,7 @@ import {
   Table2,
   ClipboardList,
   LogOut,
+  Tag,
 } from 'lucide-react'
 import useAuthStore from '../store/authStore'
 import { logoutUser } from '../api/authApi'
@@ -13,6 +14,7 @@ import { logoutUser } from '../api/authApi'
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/menu', icon: BookOpen, label: 'Menu' },
+  { to: '/categories', icon: Tag, label: 'Kategori' },
   { to: '/tables', icon: Table2, label: 'Meja' },
   { to: '/orders', icon: ClipboardList, label: 'Pesanan' },
 ]
@@ -25,7 +27,7 @@ export default function Sidebar() {
   const handleLogout = async () => {
     try {
       await logoutUser()
-    } catch (_) {}
+    } catch (_) { }
     clearAuth()
     navigate('/login')
   }
@@ -51,10 +53,9 @@ export default function Sidebar() {
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
-                isActive
-                  ? 'bg-[#F7F3E8]/10 text-[#F7F3E8]'
-                  : 'text-[#F7F3E8]/50 hover:bg-[#F7F3E8]/5 hover:text-[#F7F3E8]/80'
+              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${isActive
+                ? 'bg-[#F7F3E8]/10 text-[#F7F3E8]'
+                : 'text-[#F7F3E8]/50 hover:bg-[#F7F3E8]/5 hover:text-[#F7F3E8]/80'
               }`
             }
           >

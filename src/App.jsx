@@ -6,6 +6,7 @@ import MenuList from './pages/menu/MenuList'
 import TableList from './pages/tables/TableList'
 import OrderList from './pages/orders/OrderList'
 import NewOrder from './pages/orders/NewOrder'
+import CategoryList from './pages/categories/CategoryList'
 import AppLayout from './components/AppLayout'
 import useAuthStore from './store/authStore'
 
@@ -66,6 +67,16 @@ function App() {
             <ProtectedRoute>
               <AppLayout>
                 <NewOrder />
+              </AppLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
+              <AppLayout>
+                <CategoryList />
               </AppLayout>
             </ProtectedRoute>
           }
