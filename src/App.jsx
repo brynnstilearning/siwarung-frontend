@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import Login from './pages/auth/Login'
 import Register from './pages/auth/Register'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -8,6 +9,7 @@ import OrderList from './pages/orders/OrderList'
 import NewOrder from './pages/orders/NewOrder'
 import CategoryList from './pages/categories/CategoryList'
 import AppLayout from './components/AppLayout'
+import { PageWrapper } from './components/AnimatedSection'
 import useAuthStore from './store/authStore'
 
 function ProtectedRoute({ children }) {
@@ -15,18 +17,20 @@ function ProtectedRoute({ children }) {
   return isAuthenticated ? children : <Navigate to="/login" replace />
 }
 
-function App() {
+function AnimatedRoutes() {
+  const location = useLocation()
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
+        <Route path="/register" element={<PageWrapper><Register /></PageWrapper>} />
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
               <AppLayout>
-                <Dashboard />
+                <PageWrapper><Dashboard /></PageWrapper>
               </AppLayout>
             </ProtectedRoute>
           }
@@ -36,7 +40,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout>
-                <MenuList />
+                <PageWrapper><MenuList /></PageWrapper>
               </AppLayout>
             </ProtectedRoute>
           }
@@ -46,7 +50,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout>
-                <TableList />
+                <PageWrapper><TableList /></PageWrapper>
               </AppLayout>
             </ProtectedRoute>
           }
@@ -56,7 +60,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout>
-                <OrderList />
+                <PageWrapper><OrderList /></PageWrapper>
               </AppLayout>
             </ProtectedRoute>
           }
@@ -66,7 +70,7 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout>
-                <NewOrder />
+                <PageWrapper><NewOrder /></PageWrapper>
               </AppLayout>
             </ProtectedRoute>
           }
@@ -76,13 +80,21 @@ function App() {
           element={
             <ProtectedRoute>
               <AppLayout>
-                <CategoryList />
+                <PageWrapper><CategoryList /></PageWrapper>
               </AppLayout>
             </ProtectedRoute>
           }
         />
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
       </Routes>
+    </AnimatePresence>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AnimatedRoutes />
     </BrowserRouter>
   )
 }

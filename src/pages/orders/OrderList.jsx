@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Plus, Loader2, ChevronRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { getOrders, updateOrderStatus, deleteOrder } from '../../api/orderApi'
+import { FadeIn, StaggerContainer, StaggerItem } from '../../components/AnimatedSection'
+import { OrderCardSkeleton } from '../../components/Skeleton'
 
 const formatRupiah = (price) =>
   new Intl.NumberFormat('id-ID', {
@@ -77,25 +80,33 @@ export default function OrderList() {
     <div className="min-h-screen bg-[#F7F3E8]">
       <div className="bg-[#1F2D24] px-6 py-5">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-[#F7F3E8] text-xl font-semibold">Daftar Pesanan</h1>
-            <p className="text-[#F7F3E8]/50 text-sm mt-0.5">Kelola dan pantau semua pesanan masuk</p>
-          </div>
-          <button
-            onClick={() => navigate('/orders/new')}
-            className="flex items-center gap-2 bg-[#D98E2B] text-[#1F2D24] text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-[#D98E2B]/90 transition"
-          >
-            <Plus className="w-4 h-4" strokeWidth={2.5} />
-            Pesanan Baru
-          </button>
+          <FadeIn>
+            <div>
+              <h1 className="text-[#F7F3E8] text-xl font-semibold">Daftar Pesanan</h1>
+              <p className="text-[#F7F3E8]/50 text-sm mt-0.5">Kelola dan pantau semua pesanan masuk</p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => navigate('/orders/new')}
+              className="flex items-center gap-2 bg-[#D98E2B] text-[#1F2D24] text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-[#D98E2B]/90 transition"
+            >
+              <Plus className="w-4 h-4" strokeWidth={2.5} />
+              Pesanan Baru
+            </motion.button>
+          </FadeIn>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-6 py-8">
-        <div className="flex gap-2 mb-6 overflow-x-auto pb-1">
+        <FadeIn className="flex gap-2 mb-6 overflow-x-auto pb-1">
           {tabs.map((tab) => (
-            <button
+            <motion.button
               key={String(tab.key)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => setActiveTab(tab.key)}
               className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition ${
                 activeTab === tab.key
@@ -104,27 +115,32 @@ export default function OrderList() {
               }`}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </FadeIn>
 
         {loading ? (
-          <div className="flex items-center justify-center py-24">
-            <Loader2 className="w-6 h-6 text-[#1F2D24]/40 animate-spin" />
+          <div className="flex flex-col gap-3">
+            {Array(4).fill(0).map((_, i) => <OrderCardSkeleton key={i} />)}
           </div>
         ) : orders.length === 0 ? (
-          <div className="text-center py-24">
+          <FadeIn className="text-center py-24">
             <p className="text-[#1F2D24]/50 text-sm">Belum ada pesanan.</p>
-          </div>
+          </FadeIn>
         ) : (
-          <div className="flex flex-col gap-3">
-            {orders.map((order) => {
-              const cfg = statusConfig[order.status]
-              return (
-                <div
-                  key={order.id}
-                  className="bg-white rounded-xl border border-[#1F2D24]/8 p-5 hover:shadow-sm transition"
-                >
+          <StaggerContainer className="flex flex-col gap-3">
+            <AnimatePresence>
+              {orders.map((order) => {
+                const cfg = statusConfig[order.status]
+                return (
+                  <StaggerItem key={order.id}>
+                    <motion.div
+                      layout
+                      exit={{ opacity: 0, scale: 0.96 }}
+                      whileHover={{ y: -3, boxShadow: '0 8px 24px rgba(31,45,36,0.08)' }}
+                      transition={{ duration: 0.2, ease: 'easeOut' }}
+                      className="bg-white rounded-xl border border-[#1F2D24]/8 p-5"
+                    >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2.5 mb-1">
@@ -182,12 +198,14 @@ export default function OrderList() {
                           Batalkan
                         </button>
                       )}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </StaggerItem>
+                )
+              })}
+            </AnimatePresence>
+          </StaggerContainer>
         )}
       </div>
     </div>

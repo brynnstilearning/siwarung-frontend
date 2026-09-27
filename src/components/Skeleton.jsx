@@ -69,3 +69,18 @@ export function DashboardStatSkeleton() {
     </div>
   )
 }
+
+export function CategoryCardSkeleton() {
+  return (
+    <div className="bg-white rounded-xl border border-gray-100 px-5 py-4 flex items-center justify-between">
+      <div className="flex items-center gap-3">
+        <SkeletonBox className="w-9 h-9 rounded-lg" />
+        <SkeletonBox className="h-4 w-24" />
+      </div>
+      <div className="flex items-center gap-1">
+        <SkeletonBox className="w-8 h-8 rounded-lg" />
+        <SkeletonBox className="w-8 h-8 rounded-lg" />
+      </div>
+    </div>
+  )
+}

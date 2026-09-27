@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { X, Loader2, ImagePlus } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { createMenuItem, updateMenuItem } from '../api/menuApi'
 
 export default function MenuFormModal({ isOpen, onClose, onSuccess, categories, editItem }) {
@@ -42,8 +43,6 @@ export default function MenuFormModal({ isOpen, onClose, onSuccess, categories, 
     setImageFile(null)
     setErrors({})
   }, [editItem, isOpen, categories])
-
-  if (!isOpen) return null
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
@@ -91,19 +90,35 @@ export default function MenuFormModal({ isOpen, onClose, onSuccess, categories, 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1F2D24]/40 backdrop-blur-sm">
-      <div className="bg-[#F7F3E8] rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1F2D24]/40 backdrop-blur-sm"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="bg-[#F7F3E8] rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto"
+          >
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#1F2D24]/10 sticky top-0 bg-[#F7F3E8]">
           <h2 className="text-lg font-semibold text-[#1F2D24]">
             {isEditMode ? 'Edit Menu' : 'Tambah Menu Baru'}
           </h2>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
             onClick={onClose}
             className="p-1.5 rounded-lg text-[#1F2D24]/50 hover:bg-[#1F2D24]/5 hover:text-[#1F2D24] transition"
             aria-label="Tutup"
           >
             <X className="w-4.5 h-4.5" />
-          </button>
+          </motion.button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
@@ -229,7 +244,9 @@ export default function MenuFormModal({ isOpen, onClose, onSuccess, categories, 
             <span className="text-sm text-[#1F2D24]/80">Menu tersedia saat ini</span>
           </label>
 
-          <button
+          <motion.button
+            whileHover={{ scale: loading ? 1 : 1.02 }}
+            whileTap={{ scale: loading ? 1 : 0.98 }}
             type="submit"
             disabled={loading}
             className="w-full mt-2 bg-[#1F2D24] text-[#F7F3E8] text-sm font-medium py-2.5 rounded-lg hover:bg-[#1F2D24]/90 disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
@@ -244,9 +261,11 @@ export default function MenuFormModal({ isOpen, onClose, onSuccess, categories, 
             ) : (
               'Tambah menu'
             )}
-          </button>
+          </motion.button>
         </form>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

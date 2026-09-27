@@ -8,8 +8,11 @@ import {
   LogOut,
   Tag,
 } from 'lucide-react'
+import { motion } from 'framer-motion'
 import useAuthStore from '../store/authStore'
 import { logoutUser } from '../api/authApi'
+
+const MotionNavLink = motion(NavLink)
 
 const navItems = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -49,23 +52,32 @@ export default function Sidebar() {
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 space-y-0.5">
         {navItems.map(({ to, icon: Icon, label }) => (
-          <NavLink
+          <MotionNavLink
             key={to}
             to={to}
+            whileHover={{ x: 2 }}
+            whileTap={{ scale: 0.98 }}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${isActive
-                ? 'bg-[#F7F3E8]/10 text-[#F7F3E8]'
+              `relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${isActive
+                ? 'text-[#F7F3E8]'
                 : 'text-[#F7F3E8]/50 hover:bg-[#F7F3E8]/5 hover:text-[#F7F3E8]/80'
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#D98E2B]' : ''}`} />
-                {label}
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active-pill"
+                    className="absolute inset-0 bg-[#F7F3E8]/10 rounded-lg"
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <Icon className={`w-4 h-4 shrink-0 relative z-10 ${isActive ? 'text-[#D98E2B]' : ''}`} />
+                <span className="relative z-10">{label}</span>
               </>
             )}
-          </NavLink>
+          </MotionNavLink>
         ))}
       </nav>
 
@@ -75,13 +87,15 @@ export default function Sidebar() {
           <p className="text-[#F7F3E8] text-sm font-medium truncate">{user?.name}</p>
           <p className="text-[#F7F3E8]/40 text-xs capitalize mt-0.5">{user?.role}</p>
         </div>
-        <button
+        <motion.button
+          whileHover={{ x: 2 }}
+          whileTap={{ scale: 0.98 }}
           onClick={handleLogout}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-[#F7F3E8]/50 hover:bg-[#8C2F1E]/20 hover:text-[#F7F3E8]/80 transition"
         >
           <LogOut className="w-4 h-4 shrink-0" />
           Keluar
-        </button>
+        </motion.button>
       </div>
     </aside>
   )

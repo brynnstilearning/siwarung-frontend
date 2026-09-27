@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { X, Loader2 } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { createTable, updateTable } from '../api/tableApi'
 
 export default function TableFormModal({ isOpen, onClose, onSuccess, editTable }) {
@@ -25,8 +26,6 @@ export default function TableFormModal({ isOpen, onClose, onSuccess, editTable }
     }
     setErrors({})
   }, [editTable, isOpen])
-
-  if (!isOpen) return null
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -57,19 +56,35 @@ export default function TableFormModal({ isOpen, onClose, onSuccess, editTable }
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1F2D24]/40 backdrop-blur-sm">
-      <div className="bg-[#F7F3E8] rounded-2xl w-full max-w-sm">
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1F2D24]/40 backdrop-blur-sm"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="bg-[#F7F3E8] rounded-2xl w-full max-w-sm"
+          >
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#1F2D24]/10">
           <h2 className="text-lg font-semibold text-[#1F2D24]">
             {isEditMode ? 'Edit Meja' : 'Tambah Meja Baru'}
           </h2>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
             onClick={onClose}
             className="p-1.5 rounded-lg text-[#1F2D24]/50 hover:bg-[#1F2D24]/5 hover:text-[#1F2D24] transition"
             aria-label="Tutup"
           >
             <X className="w-4.5 h-4.5" />
-          </button>
+          </motion.button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
@@ -133,7 +148,9 @@ export default function TableFormModal({ isOpen, onClose, onSuccess, editTable }
             </div>
           )}
 
-          <button
+          <motion.button
+            whileHover={{ scale: loading ? 1 : 1.02 }}
+            whileTap={{ scale: loading ? 1 : 0.98 }}
             type="submit"
             disabled={loading}
             className="w-full mt-2 bg-[#1F2D24] text-[#F7F3E8] text-sm font-medium py-2.5 rounded-lg hover:bg-[#1F2D24]/90 disabled:opacity-60 disabled:cursor-not-allowed transition flex items-center justify-center gap-2"
@@ -148,9 +165,11 @@ export default function TableFormModal({ isOpen, onClose, onSuccess, editTable }
             ) : (
               'Tambah meja'
             )}
-          </button>
+          </motion.button>
         </form>
-      </div>
-    </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
