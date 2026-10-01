@@ -62,10 +62,10 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#F7F3E8]">
-      <div className="bg-[#1F2D24] px-6 py-5">
-        <div className="max-w-5xl mx-auto">
+      <div className="bg-[#1F2D24] px-6 h-[92px] flex items-center">
+        <div className="w-full max-w-5xl mx-auto">
           <FadeIn>
-            <h1 className="text-[#F7F3E8] text-xl font-semibold">Dashboard</h1>
+            <h1 className="font-display text-[#F7F3E8] text-2xl font-semibold">Dashboard</h1>
             <p className="text-[#F7F3E8]/50 text-sm mt-0.5">
               Ringkasan aktivitas warung hari ini
             </p>
@@ -87,7 +87,7 @@ export default function Dashboard() {
                       <stat.icon className="w-4 h-4" />
                     </div>
                     <p className="text-[#1F2D24]/50 text-xs mb-1">{stat.label}</p>
-                    <p className="text-[#1F2D24] text-xl font-bold">
+                    <p className="font-display tabular-nums text-[#1F2D24] text-2xl font-semibold">
                       {stat.format(stat.value)}
                     </p>
                   </div>

@@ -50,11 +50,11 @@ export default function TableList() {
 
   return (
     <div className="min-h-screen bg-[#F7F3E8]">
-      <div className="bg-[#1F2D24] px-6 py-5">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <div className="bg-[#1F2D24] px-6 h-[92px] flex items-center">
+        <div className="w-full max-w-6xl mx-auto flex items-center justify-between">
           <FadeIn>
             <div>
-              <h1 className="text-[#F7F3E8] text-xl font-semibold">Manajemen Meja</h1>
+              <h1 className="font-display text-[#F7F3E8] text-2xl font-semibold">Manajemen Meja</h1>
               <p className="text-[#F7F3E8]/50 text-sm mt-0.5">
                 Kelola meja dan kode QR untuk pemesanan mandiri
               </p>

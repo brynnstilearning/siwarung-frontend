@@ -62,7 +62,7 @@ export default function MenuList() {
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <FadeIn>
             <div>
-              <h1 className="text-[#F7F3E8] text-xl font-semibold">Daftar Menu</h1>
+              <h1 className="font-display text-[#F7F3E8] text-2xl font-semibold">Daftar Menu</h1>
               <p className="text-[#F7F3E8]/50 text-sm mt-0.5">
                 Kelola menu makanan dan minuman warungmu
               </p>
@@ -166,7 +166,7 @@ export default function MenuList() {
                         {item.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-[#1F2D24] font-semibold">
+                        <span className="text-[#1F2D24] font-semibold tabular-nums">
                           {formatRupiah(item.price)}
                         </span>
                         <div className="flex gap-1">

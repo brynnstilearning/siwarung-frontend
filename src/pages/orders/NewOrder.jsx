@@ -118,10 +118,10 @@ export default function NewOrder() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#F7F3E8] flex flex-col">
-        <div className="bg-[#1F2D24] px-6 py-4">
-          <div className="max-w-7xl mx-auto flex items-center gap-4">
+        <div className="bg-[#1F2D24] px-6 h-[92px] flex items-center">
+          <div className="w-full max-w-7xl mx-auto flex items-center gap-4">
             <ArrowLeft className="w-5 h-5 text-[#F7F3E8]/30" />
-            <h1 className="text-[#F7F3E8] text-lg font-semibold">Pesanan Baru</h1>
+            <h1 className="font-display text-[#F7F3E8] text-lg font-semibold">Pesanan Baru</h1>
           </div>
         </div>
         <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-6 flex gap-6">
@@ -138,8 +138,8 @@ export default function NewOrder() {
 
   return (
     <div className="min-h-screen bg-[#F7F3E8] flex flex-col">
-      <div className="bg-[#1F2D24] px-6 py-4">
-        <div className="max-w-7xl mx-auto flex items-center gap-4">
+      <div className="bg-[#1F2D24] px-6 h-[92px] flex items-center">
+        <div className="w-full max-w-7xl mx-auto flex items-center gap-4">
           <motion.button
             whileHover={{ x: -3 }}
             whileTap={{ scale: 0.9 }}
@@ -148,7 +148,7 @@ export default function NewOrder() {
           >
             <ArrowLeft className="w-5 h-5" />
           </motion.button>
-          <h1 className="text-[#F7F3E8] text-lg font-semibold">Pesanan Baru</h1>
+          <h1 className="font-display text-[#F7F3E8] text-lg font-semibold">Pesanan Baru</h1>
         </div>
       </div>
 
@@ -240,7 +240,7 @@ export default function NewOrder() {
                         <p className="text-[#1F2D24] text-sm font-semibold leading-snug line-clamp-1">
                           {item.name}
                         </p>
-                        <p className="text-[#1F2D24] text-sm font-bold mt-1">
+                        <p className="text-[#1F2D24] text-sm font-bold mt-1 tabular-nums">
                           {formatRupiah(item.price)}
                         </p>
                       </div>
@@ -325,7 +325,7 @@ export default function NewOrder() {
                           <p className="text-sm font-medium text-[#1F2D24] leading-snug line-clamp-1">
                             {item.name}
                           </p>
-                          <p className="text-xs text-[#1F2D24]/50">
+                          <p className="text-xs text-[#1F2D24]/50 tabular-nums">
                             {formatRupiah(item.price * item.quantity)}
                           </p>
                         </div>
@@ -382,7 +382,7 @@ export default function NewOrder() {
                     initial={{ opacity: 0, y: -6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.15 }}
-                    className="text-lg font-bold text-[#1F2D24]"
+                    className="font-display text-lg font-bold text-[#1F2D24] tabular-nums"
                   >
                     {formatRupiah(totalPrice)}
                   </motion.span>

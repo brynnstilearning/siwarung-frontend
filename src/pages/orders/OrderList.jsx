@@ -82,7 +82,7 @@ export default function OrderList() {
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <FadeIn>
             <div>
-              <h1 className="text-[#F7F3E8] text-xl font-semibold">Daftar Pesanan</h1>
+              <h1 className="font-display text-[#F7F3E8] text-2xl font-semibold">Daftar Pesanan</h1>
               <p className="text-[#F7F3E8]/50 text-sm mt-0.5">Kelola dan pantau semua pesanan masuk</p>
             </div>
           </FadeIn>
@@ -169,7 +169,7 @@ export default function OrderList() {
                           </span>
                         ))}
                       </div>
-                      <p className="text-sm font-semibold text-[#1F2D24]">
+                      <p className="text-sm font-semibold text-[#1F2D24] tabular-nums">
                         {formatRupiah(order.total_price)}
                       </p>
                     </div>

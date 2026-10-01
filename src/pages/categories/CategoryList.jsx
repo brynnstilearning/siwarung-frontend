@@ -77,28 +77,31 @@ export default function CategoryList() {
   }
 
   return (
-    <div className="p-6">
+    <div className="min-h-screen bg-[#F7F3E8]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <FadeIn>
-          <div>
-            <h1 className="text-xl font-semibold text-[#1F2D24]">Kategori Menu</h1>
-            <p className="text-sm text-gray-500 mt-0.5">Kelola kategori untuk pengelompokan menu</p>
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={openAdd}
-            className="flex items-center gap-2 px-4 py-2 bg-[#D98E2B] text-white text-sm font-medium rounded-lg hover:bg-[#c07a20] transition"
-          >
-            <Plus className="w-4 h-4" />
-            Tambah Kategori
-          </motion.button>
-        </FadeIn>
+      <div className="bg-[#1F2D24] px-6 h-[92px] flex items-center">
+        <div className="w-full max-w-6xl mx-auto flex items-center justify-between">
+          <FadeIn>
+            <div>
+              <h1 className="font-display text-[#F7F3E8] text-2xl font-semibold">Kategori Menu</h1>
+              <p className="text-[#F7F3E8]/50 text-sm mt-0.5">Kelola kategori untuk pengelompokan menu</p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={openAdd}
+              className="flex items-center gap-2 bg-[#D98E2B] text-[#1F2D24] text-sm font-medium px-4 py-2.5 rounded-lg hover:bg-[#D98E2B]/90 transition"
+            >
+              <Plus className="w-4 h-4" strokeWidth={2.5} />
+              Tambah Kategori
+            </motion.button>
+          </FadeIn>
+        </div>
       </div>
 
+      <div className="max-w-6xl mx-auto px-6 py-8">
       {/* Content */}
       {loading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -151,6 +154,7 @@ export default function CategoryList() {
           </AnimatePresence>
         </StaggerContainer>
       )}
+      </div>
 
       {/* Add/Edit Modal */}
       <AnimatePresence>

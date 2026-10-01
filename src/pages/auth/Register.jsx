@@ -67,7 +67,7 @@ export default function Register() {
 
           <FadeIn delay={0.15}>
             <div>
-              <h1 className="font-[Georgia] text-[#F7F3E8] text-5xl leading-[1.05] tracking-tight">
+              <h1 className="font-display font-semibold text-[#F7F3E8] text-5xl leading-[1.05] tracking-tight">
                 Warungmu,
                 <br />
                 <span className="text-[#D98E2B]">tertata rapi</span>

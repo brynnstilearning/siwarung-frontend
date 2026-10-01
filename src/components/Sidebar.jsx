@@ -38,7 +38,7 @@ export default function Sidebar() {
   return (
     <aside className="w-56 shrink-0 bg-[#1F2D24] min-h-screen flex flex-col fixed left-0 top-0 bottom-0 z-40">
       {/* Logo */}
-      <div className="px-5 py-6 border-b border-[#F7F3E8]/10">
+      <div className="h-[92px] px-5 flex items-center border-b border-[#F7F3E8]/10">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-full bg-[#D98E2B] flex items-center justify-center shrink-0">
             <UtensilsCrossed className="w-4 h-4 text-[#1F2D24]" strokeWidth={2.5} />
